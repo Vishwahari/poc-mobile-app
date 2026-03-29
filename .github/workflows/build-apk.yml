@@ -31,35 +31,45 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      # 5. Install npm dependencies
+      # 5. Set up Python (for data generation)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 6. Run Python to generate seed data for the app
+      - name: Generate seed data with Python
+        run: python generate_data.py
+
+      # 7. Install npm dependencies
       - name: Install dependencies
         working-directory: mobile-app
         run: npm install
 
-      # 6. Build the web app with Vite
+      # 8. Build the web app with Vite
       - name: Build web app
         working-directory: mobile-app
         run: npm run build
 
-      # 7. Add the Android platform via Capacitor
+      # 9. Add the Android platform via Capacitor
       - name: Add Android platform
         working-directory: mobile-app
         run: npx cap add android
 
-      # 8. Sync web assets into the Android project
+      # 10. Sync web assets into the Android project
       - name: Sync Capacitor
         working-directory: mobile-app
         run: npx cap sync android
 
-      # 9. Build the debug APK
+      # 11. Build the debug APK
       - name: Build APK
         working-directory: mobile-app/android
         run: chmod +x gradlew && ./gradlew assembleDebug
 
-      # 10. Upload the APK as a downloadable artifact
+      # 12. Upload the APK as a downloadable artifact
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: ProjectDashboard-APK
+          name: TaskFlow-APK
           path: mobile-app/android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
