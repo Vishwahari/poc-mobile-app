@@ -78,7 +78,7 @@ export default function App() {
             }}
           />
           <p style={{ marginTop: '1rem', color: 'var(--text-secondary)' }}>
-            Initializing...
+            Loading TaskFlow...
           </p>
         </div>
       </div>
@@ -122,8 +122,8 @@ function Login({ onLogin }) {
     <div className="login-container">
       <div className="login-box glass-card">
         <div className="text-center" style={{ marginBottom: '2rem' }}>
-          <h1 style={{ color: 'var(--text-primary)' }}>Welcome Back</h1>
-          <p>Enter your credentials to access your dashboard</p>
+          <h1 style={{ color: 'var(--text-primary)' }}>TaskFlow</h1>
+          <p>Sign in to manage your tasks</p>
         </div>
 
         {error && (
@@ -274,8 +274,8 @@ function Dashboard({ onLogout, user }) {
     <div className="container">
       <header className="dashboard-header">
         <div>
-          <h2>Project Dashboard</h2>
-          <p>Manage your resources and applications</p>
+          <h2>TaskFlow</h2>
+          <p>Manage your tasks and projects</p>
         </div>
         <div className="flex-center" style={{ gap: '1rem' }}>
           <span

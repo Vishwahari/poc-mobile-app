@@ -1,6 +1,6 @@
 {
-  "appId": "com.vishwahari.projectdashboard",
-  "appName": "Project Dashboard",
+  "appId": "com.vishwahari.taskflow",
+  "appName": "TaskFlow",
   "webDir": "dist",
   "server": {
     "androidScheme": "https"
