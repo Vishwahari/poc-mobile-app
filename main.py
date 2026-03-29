@@ -1,6 +1,4 @@
 from fastapi import FastAPI, Depends, HTTPException
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
@@ -37,8 +35,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Mount static files ---
-app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
 
 # --- Dependency ---
 def get_db():
@@ -61,11 +57,9 @@ class ItemCreate(BaseModel):
 class ItemResponse(ItemCreate):
     id: int
 
-# --- Routes ---
-@app.get("/", response_class=HTMLResponse)
+@app.get("/")
 def read_root():
-    with open(os.path.join(BASE_DIR, "templates", "index.html"), "r", encoding="utf-8") as f:
-        return f.read()
+    return {"status": "running", "app": "TaskFlow API", "version": "1.0"}
 
 @app.post("/api/login")
 def login(data: LoginData, db: Session = Depends(get_db)):
