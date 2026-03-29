@@ -1,6 +1,13 @@
+# Python
 __pycache__/
 *.pyc
 *.db
 app.db
 cloudflared.exe
 .env
+
+# Mobile App (Capacitor)
+mobile-app/node_modules/
+mobile-app/dist/
+mobile-app/android/
+mobile-app/.gradle/

@@ -1,0 +1,402 @@
+/* ============================================
+   Premium Dark Mode Styling
+   Standalone Android App
+   ============================================ */
+
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: rgba(30, 41, 59, 0.7);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-accent: #38bdf8;
+
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --danger: #ef4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glow: 0 0 20px rgba(56, 189, 248, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: radial-gradient(
+      circle at 15% 50%,
+      rgba(56, 189, 248, 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(139, 92, 246, 0.08) 0%,
+      transparent 50%
+    );
+  background-attachment: fixed;
+
+  /* Safe area for Android notch / status bar */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  width: 100%;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Buttons */
+.btn {
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+.btn-danger {
+  background: var(--danger);
+}
+.btn-danger:hover {
+  background: #dc2626;
+  box-shadow: 0 6px 12px -2px rgba(220, 38, 38, 0.3);
+}
+
+/* Inputs & Forms */
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.input-field:focus {
+  border-color: var(--text-accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Login Screen specific */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Dashboard & Table */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table-container {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.data-table th,
+.data-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+  background: rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+.data-table tr {
+  transition: background 0.2s ease;
+}
+.data-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .flex-center {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .glass-card {
+    padding: 1.5rem;
+  }
+  .container {
+    padding: 1rem 0.75rem;
+  }
+  .data-table th,
+  .data-table td {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  .btn {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badge-active {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+.badge-pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+}
+.badge-inactive {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  animation: fadeIn 0.3s ease;
+  padding: 1rem;
+}
+
+.modal-content {
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Loading Spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Android-specific: Remove blue highlight on tap */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
