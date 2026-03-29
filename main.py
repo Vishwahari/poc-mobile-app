@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from contextlib import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import os
 
@@ -26,6 +27,15 @@ async def lifespan(app: FastAPI):
 
 # --- Create the ONE and ONLY app instance ---
 app = FastAPI(lifespan=lifespan)
+
+# --- Add CORS Middleware for Mobile App Connection ---
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins (including Android/iOS)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Mount static files ---
 app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
